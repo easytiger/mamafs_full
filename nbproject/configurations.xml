@@ -4,6 +4,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>mama_callbacks.h</itemPath>
+      <itemPath>MamaRunnner.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -12,7 +14,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>mama_callbacks.cc</itemPath>
       <itemPath>MamaFS.cc</itemPath>
+      <itemPath>MamaRunner.cc</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -45,6 +49,18 @@
       <item path="MamaFS.cc">
         <itemTool>1</itemTool>
       </item>
+      <item path="MamaRunner.cc">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="MamaRunnner.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="mama_callbacks.cc">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="mama_callbacks.h">
+        <itemTool>3</itemTool>
+      </item>
     </conf>
     <conf name="Release" type="1">
       <toolsSet>
@@ -75,6 +91,18 @@
       </compileType>
       <item path="MamaFS.cc">
         <itemTool>1</itemTool>
+      </item>
+      <item path="MamaRunner.cc">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="MamaRunnner.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="mama_callbacks.cc">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="mama_callbacks.h">
+        <itemTool>3</itemTool>
       </item>
     </conf>
   </confs>

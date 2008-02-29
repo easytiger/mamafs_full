@@ -25,7 +25,9 @@ OBJECTDIR=build/Debug/GNU-Linux-x86
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/MamaFS.o
+	${OBJECTDIR}/MamaFS.o \
+	${OBJECTDIR}/mama_callbacks.o \
+	${OBJECTDIR}/MamaRunner.o
 
 # C Compiler Flags
 CFLAGS=
@@ -50,6 +52,14 @@ dist/Debug/GNU-Linux-x86/mamafs_full: ${OBJECTFILES}
 ${OBJECTDIR}/MamaFS.o: MamaFS.cc 
 	${MKDIR} -p ${OBJECTDIR}
 	$(COMPILE.cc) -g -I../../src/wombat_products_4.0/include/ -o ${OBJECTDIR}/MamaFS.o MamaFS.cc
+
+${OBJECTDIR}/mama_callbacks.o: mama_callbacks.cc 
+	${MKDIR} -p ${OBJECTDIR}
+	$(COMPILE.cc) -g -I../../src/wombat_products_4.0/include/ -o ${OBJECTDIR}/mama_callbacks.o mama_callbacks.cc
+
+${OBJECTDIR}/MamaRunner.o: MamaRunner.cc 
+	${MKDIR} -p ${OBJECTDIR}
+	$(COMPILE.cc) -g -I../../src/wombat_products_4.0/include/ -o ${OBJECTDIR}/MamaRunner.o MamaRunner.cc
 
 # Subprojects
 .build-subprojects:

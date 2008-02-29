@@ -6,11 +6,10 @@
 //
 
 #include <stdlib.h>
-
 #include <iostream>
 #include <fuse.h>
-
 #include <mama/mamacpp.h>
+
 
 
 using namespace std;
