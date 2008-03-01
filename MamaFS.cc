@@ -35,7 +35,6 @@ int main(int argc, char** argv)
     mr->init();
     
     return fuse_main (argc, argv, &mamafs_ops, NULL);
-    
-    //return (EXIT_SUCCESS);
+
 }
 

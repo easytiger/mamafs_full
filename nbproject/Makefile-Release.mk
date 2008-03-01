@@ -26,6 +26,7 @@ OBJECTDIR=build/Release/GNU-Linux-x86
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/MamaFS.o \
+	${OBJECTDIR}/SubscriptionEntity.o \
 	${OBJECTDIR}/mama_callbacks.o \
 	${OBJECTDIR}/MamaRunner.o \
 	${OBJECTDIR}/fsutils.o
@@ -53,6 +54,10 @@ dist/Release/GNU-Linux-x86/mamafs_full: ${OBJECTFILES}
 ${OBJECTDIR}/MamaFS.o: MamaFS.cc 
 	${MKDIR} -p ${OBJECTDIR}
 	$(COMPILE.cc) -O2 -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/MamaFS.o MamaFS.cc
+
+${OBJECTDIR}/SubscriptionEntity.o: SubscriptionEntity.cc 
+	${MKDIR} -p ${OBJECTDIR}
+	$(COMPILE.cc) -O2 -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/SubscriptionEntity.o SubscriptionEntity.cc
 
 ${OBJECTDIR}/mama_callbacks.o: mama_callbacks.cc 
 	${MKDIR} -p ${OBJECTDIR}
