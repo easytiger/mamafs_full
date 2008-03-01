@@ -8,9 +8,9 @@
 /*
  * Contains definitions of Callback classes for:
  *
- * # MamafsMessageCallback -> MamaSubscriptionCallback
- * # DictionaryCallback    -> MamaDictionaryCallback
- * # StartCallback         -> MamaStartCallback
+ * MamafsMessageCallback -> MamaSubscriptionCallback
+ * DictionaryCallback    -> MamaDictionaryCallback
+ * StartCallback         -> MamaStartCallback
  *
  */
 
@@ -34,8 +34,8 @@ namespace mamafs
 
 
         virtual void onError(MamaSubscription* subscription,
-                            const MamaStatus& status,
-                            const char* symbol);
+                             const MamaStatus& status,
+                             const char* symbol);
 
 
         virtual void    onQuality (MamaSubscription *subscription,
@@ -45,7 +45,7 @@ namespace mamafs
                                    const void *platformInfo);
 
         virtual void onMsg (MamaSubscription*  subscription,
-                                   MamaMsg&     msg);
+                            MamaMsg&     msg);
 
         virtual void onGap (MamaSubscription* subscription);
 
@@ -53,6 +53,22 @@ namespace mamafs
 
     };
     
+    class DictionaryCallback : public MamaDictionaryCallback
+    {
+    public:
+        // DictionaryCallback ();
+        // ~DictionaryCallback ();
+        void onTimeout (void);
+        void onError (const char* errMsg);
+        void onComplete (void);
+    };
+
+    class StartCallback : public MamaStartCallback 
+    {
+    public:
+        virtual ~StartCallback () {};
+        virtual void onStartComplete (MamaStatus status);
+    };
 }
 #endif	/* _MAMA_CALLBACKS_H */
 

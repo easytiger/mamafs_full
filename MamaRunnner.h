@@ -39,8 +39,8 @@ namespace mamafs {
         static MamafsMessageCallback  *msgCbs;
         static MamaRunner * getInstance();
 
-//       MamaRunner();
-         ~MamaRunner();
+        // MamaRunner();
+        ~MamaRunner();
 
         void init();
         void fetchDataDictionary();

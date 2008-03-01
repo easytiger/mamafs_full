@@ -40,7 +40,7 @@ CXXFLAGS=-D_FILE_OFFSET_BITS=64
 FFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=
+LDLIBSOPTIONS=-L../../src/wombat_products_4.0/lib -Wl,-rpath /home/gerry/src/wombat_products_4.0/lib -dynamic -lmama -lmamacpp -lmamda -lmamdabook -lmamdaoptions -lwombatmsg -lwombatmsgcpp
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS} dist/Debug/GNU-Linux-x86/mamafs_full

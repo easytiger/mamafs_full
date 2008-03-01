@@ -42,7 +42,21 @@
           <commandLine>-D_FILE_OFFSET_BITS=64</commandLine>
         </ccCompilerTool>
         <linkerTool>
+          <linkerAddLib>
+            <directoryPath>../../src/wombat_products_4.0/lib</directoryPath>
+          </linkerAddLib>
+          <linkerDynSerch>
+            <directoryPath>/home/gerry/src/wombat_products_4.0/lib</directoryPath>
+          </linkerDynSerch>
           <linkerLibItems>
+            <linkerOptionItem>-dynamic</linkerOptionItem>
+            <linkerLibLibItem>mama</linkerLibLibItem>
+            <linkerLibLibItem>mamacpp</linkerLibLibItem>
+            <linkerLibLibItem>mamda</linkerLibLibItem>
+            <linkerLibLibItem>mamdabook</linkerLibLibItem>
+            <linkerLibLibItem>mamdaoptions</linkerLibLibItem>
+            <linkerLibLibItem>wombatmsg</linkerLibLibItem>
+            <linkerLibLibItem>wombatmsgcpp</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

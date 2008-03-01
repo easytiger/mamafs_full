@@ -8,14 +8,24 @@
 #include <stdlib.h>
 #include <iostream>
 #include <fuse.h>
+#include "time.h"
+
 #include <mama/mamacpp.h>
 
-
+#include "MamaRunnner.h"
 
 using namespace std;
 using namespace Wombat;
+using namespace mamafs;
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv) 
+{
+    
+    MamaRunner * mr = MamaRunner::getInstance();
+    mr->init();
+    mr->startMamaInBackground();
+    sleep(5);
+    mr->stopMama();
     
     return (EXIT_SUCCESS);
 }
