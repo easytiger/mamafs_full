@@ -34,8 +34,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-D_FILE_OFFSET_BITS=64
-CXXFLAGS=-D_FILE_OFFSET_BITS=64
+CCFLAGS=-D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=26
+CXXFLAGS=-D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=26
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -48,7 +48,7 @@ LDLIBSOPTIONS=-L../../src/wombat_products_4.0/lib -Wl,-rpath /home/gerry/src/wom
 
 dist/Debug/GNU-Linux-x86/mamafs_full: ${OBJECTFILES}
 	${MKDIR} -p dist/Debug/GNU-Linux-x86
-	${LINK.cc} -o dist/Debug/GNU-Linux-x86/mamafs_full ${OBJECTFILES} ${LDLIBSOPTIONS} 
+	${LINK.cc} -lfuse -o dist/Debug/GNU-Linux-x86/mamafs_full ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
 ${OBJECTDIR}/MamaFS.o: MamaFS.cc 
 	${MKDIR} -p ${OBJECTDIR}

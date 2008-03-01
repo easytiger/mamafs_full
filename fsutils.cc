@@ -2,12 +2,14 @@
  * Contains the fuse api setup and callbacks code
  *
  */
+#include <iostream>
 
 #include "MamaRunnner.h"
 #include "fsutils.h"
 
 
 using namespace mamafs;
+
 /*
  * All the filesystem callbacks
  */
@@ -36,8 +38,6 @@ int mamafs_open (const char *path, struct fuse_file_info *fi)
     return 0;
 }
 
-
-// the below is fucked
 int mamafs_read (const char *path, char *buf, size_t size,
                  off_t offset, struct fuse_file_info *fi)
 {
@@ -51,6 +51,13 @@ void *mamafs_init (struct fuse_conn_info *conn)
     mr->startMamaInBackground();
     
     return 0;
+}
+
+void mamafs_destroy (void * ctx){
+    
+    MamaRunner * mr = MamaRunner::getInstance();
+    mr->stopMama();
+    
 }
 
 int mamafs_utimens (const char *path, const struct timespec ts[2])
@@ -84,11 +91,4 @@ int mamafs_unlink (const char *path)
 int mamafs_opendir (const char * path, struct fuse_file_info *fi)
 {
     return 0;
-}
-
-void mamafs_destroy (void * ctx){
-    
-    MamaRunner * mr = MamaRunner::getInstance();
-    mr->stopMama();
-    
 }

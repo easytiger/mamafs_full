@@ -41,7 +41,7 @@
           <includeDirectories>
             <directoryPath>../../src/wombat_products_4.0/include/</directoryPath>
           </includeDirectories>
-          <commandLine>-D_FILE_OFFSET_BITS=64</commandLine>
+          <commandLine>-D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=26</commandLine>
         </ccCompilerTool>
         <linkerTool>
           <linkerAddLib>
@@ -60,6 +60,7 @@
             <linkerLibLibItem>wombatmsg</linkerLibLibItem>
             <linkerLibLibItem>wombatmsgcpp</linkerLibLibItem>
           </linkerLibItems>
+          <commandLine>-lfuse</commandLine>
         </linkerTool>
       </compileType>
       <item path="MamaFS.cc">
