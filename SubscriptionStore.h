@@ -10,6 +10,25 @@
 
 #include "SubscriptionEntity.h"
 #include <mama/mamacpp.h>
+#include <map>
+
+using namespace std;
+
+namespace mamafs
+{
+    
+    class SubscriptionStore
+    {
+    private:
+        static bool instFlag;
+        static SubscriptionStore *inst;
+        
+        map<string, SubscriptionEntity> subs;
+    public:
+        static SubscriptionStore * getInstance();
+        
+    };
+}
 
 #endif	/* _SUBSCRIPTIONSTORE_H */
 

@@ -12,6 +12,8 @@
 
 #include <mama/mamacpp.h>
 
+#include "SubscriptionStore.h"
+#include "SubscriptionEntity.h"
 #include "MamaRunnner.h"
 #include "fsutils.h"
 
@@ -25,15 +27,17 @@ int main(int argc, char** argv)
     
     memset(&mamafs_ops, 0, sizeof(fuse_operations));
     
-    mamafs_ops.init = mamafs_init;
-    mamafs_ops.destroy = mamafs_destroy;
-    mamafs_ops.readdir = mamafs_readdir;
-    mamafs_ops.getattr = mamafs_getattr;
-    mamafs_ops.open = mamafs_open;
+    mamafs_ops.init     = mamafs_init;
+    mamafs_ops.destroy  = mamafs_destroy;
+    mamafs_ops.readdir  = mamafs_readdir;
+    mamafs_ops.getattr  = mamafs_getattr;
+    mamafs_ops.open     = mamafs_open;
     
     MamaRunner * mr = MamaRunner::getInstance();
     mr->init();
     
+    SubscriptionStore * store = SubscriptionStore::getInstance();
+    SubscriptionStore * store2 = SubscriptionStore::getInstance();
     return fuse_main (argc, argv, &mamafs_ops, NULL);
 
 }
