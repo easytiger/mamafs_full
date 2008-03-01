@@ -1,9 +1,9 @@
 /*
  * Contains implementations of Callbacks For:
  *
- * # MamafsMessageCallback -> MamaSubscriptionCallback
- * # DictionaryCallback    -> MamaDictionaryCallback
- * # StartCallback         -> MamaStartCallback
+ * MamafsMessageCallback -> MamaSubscriptionCallback
+ * DictionaryCallback    -> MamaDictionaryCallback
+ * StartCallback         -> MamaStartCallback
  *
  */
 
