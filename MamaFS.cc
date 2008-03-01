@@ -23,6 +23,7 @@ int main(int argc, char** argv)
     
     MamaRunner * mr = MamaRunner::getInstance();
     mr->init();
+    // should have dictionary by now
     mr->startMamaInBackground();
     sleep(5);
     mr->stopMama();
