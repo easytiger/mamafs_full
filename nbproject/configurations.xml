@@ -8,6 +8,7 @@
       <itemPath>mama_callbacks.h</itemPath>
       <itemPath>MamaRunnner.h</itemPath>
       <itemPath>SubscriptionEntity.h</itemPath>
+      <itemPath>SubscriptionStore.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -21,6 +22,7 @@
       <itemPath>MamaFS.cc</itemPath>
       <itemPath>MamaRunner.cc</itemPath>
       <itemPath>SubscriptionEntity.cc</itemPath>
+      <itemPath>SubscriptionStore.cc</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -80,6 +82,12 @@
       <item path="SubscriptionEntity.h">
         <itemTool>3</itemTool>
       </item>
+      <item path="SubscriptionStore.cc">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="SubscriptionStore.h">
+        <itemTool>3</itemTool>
+      </item>
       <item path="fsutils.cc">
         <itemTool>1</itemTool>
       </item>
@@ -133,6 +141,12 @@
         <itemTool>1</itemTool>
       </item>
       <item path="SubscriptionEntity.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="SubscriptionStore.cc">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="SubscriptionStore.h">
         <itemTool>3</itemTool>
       </item>
       <item path="fsutils.cc">

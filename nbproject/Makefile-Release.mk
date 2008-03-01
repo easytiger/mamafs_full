@@ -29,6 +29,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/SubscriptionEntity.o \
 	${OBJECTDIR}/mama_callbacks.o \
 	${OBJECTDIR}/MamaRunner.o \
+	${OBJECTDIR}/SubscriptionStore.o \
 	${OBJECTDIR}/fsutils.o
 
 # C Compiler Flags
@@ -66,6 +67,10 @@ ${OBJECTDIR}/mama_callbacks.o: mama_callbacks.cc
 ${OBJECTDIR}/MamaRunner.o: MamaRunner.cc 
 	${MKDIR} -p ${OBJECTDIR}
 	$(COMPILE.cc) -O2 -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/MamaRunner.o MamaRunner.cc
+
+${OBJECTDIR}/SubscriptionStore.o: SubscriptionStore.cc 
+	${MKDIR} -p ${OBJECTDIR}
+	$(COMPILE.cc) -O2 -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/SubscriptionStore.o SubscriptionStore.cc
 
 ${OBJECTDIR}/fsutils.o: fsutils.cc 
 	${MKDIR} -p ${OBJECTDIR}
