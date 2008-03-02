@@ -94,10 +94,25 @@ mamafs::SubscriptionStore::getSubscriptionEntityBySym(string symName)
     
     if ( ! ((iter = subs.find(symName)) == subs.end()) ) 
     {
-        //subEnt = (*iter).second;
+        subEnt = (*iter).second;
         cout << "foudn symbol" << endl;
     }
     
     return subEnt;
+    
+}
+
+void
+mamafs::SubscriptionStore::removeBySymName(string symName)
+{
+    std::map<string, SubscriptionEntity*>::iterator iter;
+    
+    iter = subs.find(symName);
+    
+    if (iter != subs.end())
+    {
+        delete (*iter).second;
+        subs.erase(iter);
+    }
     
 }

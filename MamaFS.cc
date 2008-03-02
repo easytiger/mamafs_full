@@ -48,9 +48,23 @@ int main(int argc, char** argv)
     store2->addEntity ("CAKE");
     
     store2->printStoreContents();
-    store2->getSubscriptionEntityBySym("AAPL");
+    
+    if (store2->getSubscriptionEntityBySym("CAKE") != NULL){
+        cout << "Subscription found and not null" 
+             << store2->getSubscriptionEntityBySym("CAKE")->getSymbolName() << endl;
+    }
+    else
+    {
+       // not found
+    }
+    
+    store2->removeBySymName("AAPL");
+    store2->removeBySymName("CAKE");
+    store2->addEntity("AAPL");
+    store2->printStoreContents();
+    
     cout << endl << endl;
-
+    
     return fuse_main (argc, argv, &mamafs_ops, NULL);
 
 }
