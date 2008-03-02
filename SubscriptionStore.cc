@@ -74,13 +74,14 @@ mamafs::SubscriptionStore::addEntity(string symName)
                             "UTP_WMW", 
                             symName.c_str(), 
                             NULL);
+        cout << "Symbol " << symName << " added" << endl;
     }
     else
     {
         cout << "Not adding.. already in store" << endl;
     }
     
-    cout << "Symbol " << symName << " added" << endl;
+    
 
 }
 

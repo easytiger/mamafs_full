@@ -44,8 +44,8 @@ int main(int argc, char** argv)
     
     store->addEntity  ("CAKE");
     store2->addEntity ("SCOX");
-    store->addEntity  ("AAPL");
-    store2->addEntity ("CAKE");
+    //store->addEntity  ("AAPL");
+    store2->addEntity ("MSFT");
     
     store2->printStoreContents();
     
@@ -58,9 +58,7 @@ int main(int argc, char** argv)
        // not found
     }
     
-    store2->removeBySymName("AAPL");
-    store2->removeBySymName("CAKE");
-    store2->addEntity("AAPL");
+  //  store2->addEntity("AAPL");
     store2->printStoreContents();
     
     cout << endl << endl;
@@ -68,4 +66,3 @@ int main(int argc, char** argv)
     return fuse_main (argc, argv, &mamafs_ops, NULL);
 
 }
-

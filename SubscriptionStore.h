@@ -23,9 +23,10 @@ namespace mamafs
         static bool instFlag;
         static SubscriptionStore *inst;
         SubscriptionStore();
-        map<string, SubscriptionEntity*> subs;
+        
         
     public:
+        map<string, SubscriptionEntity*> subs;
         static SubscriptionStore * getInstance();
         ~SubscriptionStore();
         
@@ -34,7 +35,7 @@ namespace mamafs
         
         SubscriptionEntity * getSubscriptionEntityBySym(string symName);
         void removeBySymName(string symName);
-        
+
     };
 }
 

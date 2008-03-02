@@ -28,6 +28,7 @@ string mamafs::SubscriptionEntity::getSymbolName()
 
 void mamafs::SubscriptionEntity::setSymbolName(string sym_name){
     symbolName = sym_name;
+    
 }
 
 string mamafs::SubscriptionEntity::getFilePath()
