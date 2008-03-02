@@ -42,12 +42,14 @@ int main(int argc, char** argv)
     SubscriptionStore * store = SubscriptionStore::getInstance();
     SubscriptionStore * store2 = SubscriptionStore::getInstance();
     
-    store->addEntity("CAKE");
-    store2->addEntity("SCOX");
-    store->addEntity("AAPL");
-    store2->addEntity("CAKE");
+    store->addEntity  ("CAKE");
+    store2->addEntity ("SCOX");
+    store->addEntity  ("AAPL");
+    store2->addEntity ("CAKE");
     
     store2->printStoreContents();
+    store2->getSubscriptionEntityBySym("AAPL");
+    cout << endl << endl;
 
     return fuse_main (argc, argv, &mamafs_ops, NULL);
 

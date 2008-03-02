@@ -13,7 +13,8 @@ using namespace std;
 bool SubscriptionStore::instFlag = false;
 SubscriptionStore * SubscriptionStore::inst = NULL;
 
-SubscriptionStore * mamafs::SubscriptionStore::getInstance()
+SubscriptionStore * 
+mamafs::SubscriptionStore::getInstance()
 {
     if (!instFlag)
     {
@@ -42,7 +43,8 @@ mamafs::SubscriptionStore::~SubscriptionStore()
     }
 }
 
-void mamafs::SubscriptionStore::printStoreContents()
+void 
+mamafs::SubscriptionStore::printStoreContents()
 {
     std::map<string, SubscriptionEntity*>::iterator iter;
     for (iter = subs.begin(); iter != subs.end(); iter++)
@@ -53,7 +55,8 @@ void mamafs::SubscriptionStore::printStoreContents()
 }
 
 
-bool mamafs::SubscriptionStore::addEntity(string symName)
+bool 
+mamafs::SubscriptionStore::addEntity(string symName)
 {
     MamaRunner * mr = MamaRunner::getInstance();
     
@@ -81,3 +84,20 @@ bool mamafs::SubscriptionStore::addEntity(string symName)
 
 }
 
+SubscriptionEntity * 
+mamafs::SubscriptionStore::getSubscriptionEntityBySym(string symName)
+{
+    
+    
+    SubscriptionEntity * subEnt = NULL;
+    std::map<string, SubscriptionEntity*>::iterator iter;
+    
+    if ( ! ((iter = subs.find(symName)) == subs.end()) ) 
+    {
+        //subEnt = (*iter).second;
+        cout << "foudn symbol" << endl;
+    }
+    
+    return subEnt;
+    
+}
