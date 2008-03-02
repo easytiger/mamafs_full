@@ -22,10 +22,17 @@ namespace mamafs
     private:
         static bool instFlag;
         static SubscriptionStore *inst;
+        SubscriptionStore();
         
-        map<string, SubscriptionEntity> subs;
+        
+        map<string, SubscriptionEntity*> subs;
     public:
         static SubscriptionStore * getInstance();
+        ~SubscriptionStore();
+        
+        void printStoreContents(void);
+        bool addEntity(string symName);
+        SubscriptionEntity * getSubscriptionEntityBySym(string sym_name);
         
     };
 }

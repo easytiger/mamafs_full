@@ -1,16 +1,24 @@
 #include <string>
+#include <iostream>
 #include <time.h>
 
 #include "SubscriptionEntity.h"
 
-mamafs::SubscriptionEntity::SubscriptionEntity()
+using namespace std;
+
+//mamafs::SubscriptionEntity::SubscriptionEntity()
+//{
+//    
+//}
+
+mamafs::SubscriptionEntity::SubscriptionEntity(string sym_name)
 {
-    
+    setSymbolName(sym_name);
 }
 
 mamafs::SubscriptionEntity::~SubscriptionEntity()
 {
-    
+    cout << "Destroyed!" << endl;
 }
 
 string mamafs::SubscriptionEntity::getSymbolName()

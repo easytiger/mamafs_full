@@ -36,14 +36,14 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-D_FILE_OFFSET_BITS=64
-CXXFLAGS=-D_FILE_OFFSET_BITS=64
+CCFLAGS=-D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=26
+CXXFLAGS=-D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=26
 
 # Fortran Compiler Flags
 FFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=
+LDLIBSOPTIONS=-L../../src/wombat_products_4.0/lib -Wl,-rpath ../../src/wombat_products_4.0/lib -lmama -lmamacpp -lmamda -lmamdabook -lmamdaoptions -lwombatcfgcpp -lwombatmsg -lwombatmsgcpp /usr/lib/libfuse.so
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS} dist/Release/GNU-Linux-x86/mamafs_full
@@ -54,27 +54,27 @@ dist/Release/GNU-Linux-x86/mamafs_full: ${OBJECTFILES}
 
 ${OBJECTDIR}/MamaFS.o: MamaFS.cc 
 	${MKDIR} -p ${OBJECTDIR}
-	$(COMPILE.cc) -O2 -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/MamaFS.o MamaFS.cc
+	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/MamaFS.o MamaFS.cc
 
 ${OBJECTDIR}/SubscriptionEntity.o: SubscriptionEntity.cc 
 	${MKDIR} -p ${OBJECTDIR}
-	$(COMPILE.cc) -O2 -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/SubscriptionEntity.o SubscriptionEntity.cc
+	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/SubscriptionEntity.o SubscriptionEntity.cc
 
 ${OBJECTDIR}/mama_callbacks.o: mama_callbacks.cc 
 	${MKDIR} -p ${OBJECTDIR}
-	$(COMPILE.cc) -O2 -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/mama_callbacks.o mama_callbacks.cc
+	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/mama_callbacks.o mama_callbacks.cc
 
 ${OBJECTDIR}/MamaRunner.o: MamaRunner.cc 
 	${MKDIR} -p ${OBJECTDIR}
-	$(COMPILE.cc) -O2 -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/MamaRunner.o MamaRunner.cc
+	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/MamaRunner.o MamaRunner.cc
 
 ${OBJECTDIR}/SubscriptionStore.o: SubscriptionStore.cc 
 	${MKDIR} -p ${OBJECTDIR}
-	$(COMPILE.cc) -O2 -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/SubscriptionStore.o SubscriptionStore.cc
+	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/SubscriptionStore.o SubscriptionStore.cc
 
 ${OBJECTDIR}/fsutils.o: fsutils.cc 
 	${MKDIR} -p ${OBJECTDIR}
-	$(COMPILE.cc) -O2 -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/fsutils.o fsutils.cc
+	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/fsutils.o fsutils.cc
 
 # Subprojects
 .build-subprojects:

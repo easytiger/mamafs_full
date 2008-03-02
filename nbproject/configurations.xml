@@ -118,13 +118,29 @@
           <includeDirectories>
             <directoryPath>../../src/wombat_products_4.0/include</directoryPath>
           </includeDirectories>
-          <commandLine>-D_FILE_OFFSET_BITS=64</commandLine>
+          <commandLine>-D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=26</commandLine>
+          <warningLevel>3</warningLevel>
         </ccCompilerTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
         </fortranCompilerTool>
         <linkerTool>
+          <linkerAddLib>
+            <directoryPath>../../src/wombat_products_4.0/lib</directoryPath>
+          </linkerAddLib>
+          <linkerDynSerch>
+            <directoryPath>../../src/wombat_products_4.0/lib</directoryPath>
+          </linkerDynSerch>
           <linkerLibItems>
+            <linkerLibLibItem>mama</linkerLibLibItem>
+            <linkerLibLibItem>mamacpp</linkerLibLibItem>
+            <linkerLibLibItem>mamda</linkerLibLibItem>
+            <linkerLibLibItem>mamdabook</linkerLibLibItem>
+            <linkerLibLibItem>mamdaoptions</linkerLibLibItem>
+            <linkerLibLibItem>wombatcfgcpp</linkerLibLibItem>
+            <linkerLibLibItem>wombatmsg</linkerLibLibItem>
+            <linkerLibLibItem>wombatmsgcpp</linkerLibLibItem>
+            <linkerLibFileItem>/usr/lib/libfuse.so</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

@@ -50,7 +50,8 @@ void mamafs::MamafsMessageCallback::onQuality (MamaSubscription *subscription,
 void mamafs::MamafsMessageCallback::onMsg(MamaSubscription*  subscription,
                                           MamaMsg&     msg)
 {
-
+    cout << "Message Recieved - " <<  msg.getMsgTypeName() << " recieved for " 
+         << subscription->getSymbol() << endl;
 }
 
 void mamafs::MamafsMessageCallback::onGap (MamaSubscription* subscription)

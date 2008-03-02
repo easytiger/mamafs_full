@@ -5,6 +5,9 @@
 #include <iostream>
 
 #include "MamaRunnner.h"
+#include "SubscriptionStore.h"
+#include "SubscriptionEntity.h"
+
 #include "fsutils.h"
 
 
@@ -55,8 +58,11 @@ void *mamafs_init (struct fuse_conn_info *conn)
 
 void mamafs_destroy (void * ctx){
     
+    SubscriptionStore * ss = SubscriptionStore::getInstance();
+    delete ss;
+    
     MamaRunner * mr = MamaRunner::getInstance();
-    mr->stopMama();
+    mr->stopMama(); 
     
 }
 

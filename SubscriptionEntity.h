@@ -26,7 +26,9 @@ namespace mamafs
         time_t lastUpdateTime;
         
     public:
-        SubscriptionEntity();
+        //SubscriptionEntity();
+        SubscriptionEntity(string sym_name);
+        
         ~SubscriptionEntity();
         
         Wombat::MamaSubscription mamaSub;   // public mamaSub
@@ -41,7 +43,6 @@ namespace mamafs
 
         void setUpdateTimeToNow();
         time_t getUpdateTime();
-        
     };  
 }
 
