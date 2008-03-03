@@ -38,6 +38,7 @@ int main(int argc, char** argv)
     mamafs_ops.setxattr = mamafs_setxattr;
     mamafs_ops.fgetattr = mamafs_fgetattr;
     mamafs_ops.utimens  = mamafs_utimens;
+    mamafs_ops.unlink   = mamafs_unlink;
     
     return fuse_main (argc, argv, &mamafs_ops, NULL);
 }

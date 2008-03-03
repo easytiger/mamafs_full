@@ -64,6 +64,7 @@ mamafs::SubscriptionStore::addEntity(string symName)
     if ( (iter = subs.find(symName)) == subs.end())
     {    
         SubscriptionEntity * se = new SubscriptionEntity(symName);
+        
         se->setMessage("New Entity");
         subs[symName] = se;
         
@@ -95,7 +96,6 @@ mamafs::SubscriptionStore::getSubscriptionEntityBySym(string symName)
     if ( ! ((iter = subs.find(symName)) == subs.end()) ) 
     {
         subEnt = (*iter).second;
-        cout << "foudn symbol" << endl;
     }
     
     return subEnt;
@@ -111,6 +111,9 @@ mamafs::SubscriptionStore::removeBySymName(string symName)
     
     if (iter != subs.end())
     {
+        iter->second->mamaSub.deactivate();
+        iter->second->mamaSub.destroy();
+        
         delete (*iter).second;
         subs.erase(iter);
     }

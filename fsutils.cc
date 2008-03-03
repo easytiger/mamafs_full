@@ -136,29 +136,7 @@ void
     MamaRunner * mr = MamaRunner::getInstance();
     mr->init();
     mr->startMamaInBackground();
-   
-    // below is testing code. remove this!!
-    SubscriptionStore * store = SubscriptionStore::getInstance();
-    SubscriptionStore * store2 = SubscriptionStore::getInstance();
-    
-    store->addEntity  ("CAKE");
-    store2->addEntity ("SCOX");
-    //store->addEntity  ("AAPL");
-    store2->addEntity ("MSFT");
-    
-    store2->printStoreContents();
-    
-    if (store2->getSubscriptionEntityBySym("CAKE") != NULL){
-        cout << "Subscription found and not null" 
-             << store2->getSubscriptionEntityBySym("CAKE")->getSymbolName() << endl;
-    }
-    else
-    {
-       // not found
-    }
-    
-  //  store2->addEntity("AAPL");
-    store2->printStoreContents();
+
     return 0;
 }
 
@@ -213,6 +191,11 @@ mamafs_setxattr (const char *path, const char *name,
 int 
 mamafs_unlink (const char *path)
 {
+    
+    SubscriptionStore *ss = SubscriptionStore::getInstance();
+    
+    ss->removeBySymName(++path);
+
     return 0;
 }
 
