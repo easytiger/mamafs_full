@@ -31,7 +31,7 @@ namespace mamafs
         
         ~SubscriptionEntity();
         
-        Wombat::MamaSubscription mamaSub;   // public mamaSub
+        Wombat::MamaSubscription * mamaSub;   // public mamaSub
         
         string getSymbolName();
         void setSymbolName(string sym_name);

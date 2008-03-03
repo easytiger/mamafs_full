@@ -67,13 +67,15 @@ mamafs::SubscriptionStore::addEntity(string symName)
         
         se->setMessage("New Entity");
         subs[symName] = se;
+        se->mamaSub = new MamaSubscription();
         
-        se->mamaSub.create( mr->mTransport, 
+        se->mamaSub->create( mr->mTransport, 
                             mr->mDefQueue, 
                             mr->msgCbs, 
                             "UTP_WMW", 
                             symName.c_str(), 
                             NULL);
+        
         cout << "Symbol " << symName << " added" << endl;
     }
     else
@@ -111,10 +113,12 @@ mamafs::SubscriptionStore::removeBySymName(string symName)
     
     if (iter != subs.end())
     {
-        iter->second->mamaSub.deactivate();
-        iter->second->mamaSub.destroy();
+        iter->second->mamaSub->deactivate();
+        iter->second->mamaSub->destroy();
         
+        delete (*iter).second->mamaSub;
         delete (*iter).second;
+
         subs.erase(iter);
     }
     
