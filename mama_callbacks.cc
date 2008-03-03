@@ -13,10 +13,13 @@
 
 #include "mama_callbacks.h"
 #include "MamaRunnner.h"
+#include "SubscriptionEntity.h"
+#include "SubscriptionStore.h"
 
 #include <mama/mamacpp.h>
 
 #include <iostream>
+#include <sstream>
 
 using namespace mamafs;
 using namespace std;
@@ -26,19 +29,22 @@ mamafs::MamafsMessageCallback::~MamafsMessageCallback ()
     
 }
 
-void mamafs::MamafsMessageCallback::onCreate (MamaSubscription* subscription)
+void 
+mamafs::MamafsMessageCallback::onCreate (MamaSubscription* subscription)
 {
     
 }
 
-void mamafs::MamafsMessageCallback::onError(MamaSubscription* subscription,
+void 
+mamafs::MamafsMessageCallback::onError(MamaSubscription* subscription,
                                             const MamaStatus& status, 
                                             const char* symbol)
 {
 
 }
 
-void mamafs::MamafsMessageCallback::onQuality (MamaSubscription *subscription, 
+void 
+mamafs::MamafsMessageCallback::onQuality (MamaSubscription *subscription, 
                                                mamaQuality quality, 
                                                const char *symbol, 
                                                short cause, 
@@ -47,19 +53,35 @@ void mamafs::MamafsMessageCallback::onQuality (MamaSubscription *subscription,
 
 }
 
-void mamafs::MamafsMessageCallback::onMsg(MamaSubscription*  subscription,
-                                          MamaMsg&     msg)
+void 
+mamafs::MamafsMessageCallback::onMsg(MamaSubscription*  subscription,
+                                     MamaMsg&     msg)
 {
-    cout << "Message Recieved - " <<  msg.getMsgTypeName() << " recieved for " 
-         << subscription->getSymbol() << endl;
+  
+    SubscriptionStore *ss = SubscriptionStore::getInstance();
+    std::map<string, SubscriptionEntity*>::iterator iter;
+    iter = ss->subs.find(subscription->getSymbol());
+    
+    ostringstream msgStream;
+    
+    msgStream <<  msg.getMsgTypeName() << " recieved for " 
+              << subscription->getSymbol() << endl;
+    
+    (*iter).second->setMessage(msgStream.str());
+    (*iter).second->setUpdateTimeToNow();
+    
+    cout << msgStream.str();
+    
 }
 
-void mamafs::MamafsMessageCallback::onGap (MamaSubscription* subscription)
+void 
+mamafs::MamafsMessageCallback::onGap (MamaSubscription* subscription)
 {
     
 }
 
-void mamafs::MamafsMessageCallback::onRecapRequest (MamaSubscription* subscription)
+void 
+mamafs::MamafsMessageCallback::onRecapRequest (MamaSubscription* subscription)
 {
     
 }
@@ -72,7 +94,8 @@ void mamafs::MamafsMessageCallback::onRecapRequest (MamaSubscription* subscripti
 /*
  * Dictionary Callbacks
  */
-void mamafs::DictionaryCallback::onTimeout()
+void 
+mamafs::DictionaryCallback::onTimeout()
 {
     std::cout << "Dictionary Timeout called" << std::endl;
     MamaRunner * mr = mamafs::MamaRunner::getInstance();
@@ -80,14 +103,16 @@ void mamafs::DictionaryCallback::onTimeout()
 
 }
 
-void mamafs::DictionaryCallback::onError(const char * errMsg)
+void 
+mamafs::DictionaryCallback::onError(const char * errMsg)
 {
     std::cout << "Dictionary Error Called" << std::endl;
     MamaRunner * mr = mamafs::MamaRunner::getInstance();
     mr->stopMama();
 }
 
-void mamafs::DictionaryCallback::onComplete()
+void 
+mamafs::DictionaryCallback::onComplete()
 {
     std::cout << "Dictionary received" << std::endl;
     MamaRunner * mr = mamafs::MamaRunner::getInstance();
@@ -95,7 +120,8 @@ void mamafs::DictionaryCallback::onComplete()
 
 }
 
-void mamafs::MamaRunner::fetchDataDictionary()
+void 
+mamafs::MamaRunner::fetchDataDictionary()
 {
 
     mDictionary = new MamaDictionary;
@@ -113,7 +139,8 @@ void mamafs::MamaRunner::fetchDataDictionary()
      mr->startMama();     
 }
 
-void mamafs::StartCallback::onStartComplete(MamaStatus status)
+void 
+mamafs::StartCallback::onStartComplete(MamaStatus status)
 {
     cout << "MamaStartCallback called with status " <<status.toString() << endl;
 }

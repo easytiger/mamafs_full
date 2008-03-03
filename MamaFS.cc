@@ -11,8 +11,6 @@
 #include <ctime>
 #include <map>
 
-
-
 #include <mama/mamacpp.h>
 
 #include "SubscriptionStore.h"
@@ -27,7 +25,6 @@ using namespace mamafs;
 int main(int argc, char** argv) 
 {
     fuse_operations mamafs_ops;
-    
     memset(&mamafs_ops, 0, sizeof(fuse_operations));
     
     mamafs_ops.init     = mamafs_init;
@@ -35,34 +32,11 @@ int main(int argc, char** argv)
     mamafs_ops.readdir  = mamafs_readdir;
     mamafs_ops.getattr  = mamafs_getattr;
     mamafs_ops.open     = mamafs_open;
-    
-    MamaRunner * mr = MamaRunner::getInstance();
-    mr->init();
-    
-    SubscriptionStore * store = SubscriptionStore::getInstance();
-    SubscriptionStore * store2 = SubscriptionStore::getInstance();
-    
-    store->addEntity  ("CAKE");
-    store2->addEntity ("SCOX");
-    //store->addEntity  ("AAPL");
-    store2->addEntity ("MSFT");
-    
-    store2->printStoreContents();
-    
-    if (store2->getSubscriptionEntityBySym("CAKE") != NULL){
-        cout << "Subscription found and not null" 
-             << store2->getSubscriptionEntityBySym("CAKE")->getSymbolName() << endl;
-    }
-    else
-    {
-       // not found
-    }
-    
-  //  store2->addEntity("AAPL");
-    store2->printStoreContents();
-    
-    cout << endl << endl;
+    mamafs_ops.read     = mamafs_read;
+    mamafs_ops.mkdir    = mamafs_mkdir;
+    mamafs_ops.create   = mamafs_create;
+    mamafs_ops.setxattr = mamafs_setxattr;
+    mamafs_ops.fgetattr = mamafs_fgetattr;
     
     return fuse_main (argc, argv, &mamafs_ops, NULL);
-
 }

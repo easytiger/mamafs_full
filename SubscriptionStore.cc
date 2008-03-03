@@ -60,7 +60,6 @@ mamafs::SubscriptionStore::addEntity(string symName)
 {
     MamaRunner * mr = MamaRunner::getInstance();
     
-    //todo: check if it exists 
     std::map<string, SubscriptionEntity*>::iterator iter;
     if ( (iter = subs.find(symName)) == subs.end())
     {    

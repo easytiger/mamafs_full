@@ -21,37 +21,44 @@ mamafs::SubscriptionEntity::~SubscriptionEntity()
     cout << "Destroyed!" << endl;
 }
 
-string mamafs::SubscriptionEntity::getSymbolName()
+string 
+mamafs::SubscriptionEntity::getSymbolName()
 {
     return symbolName;
 }
 
-void mamafs::SubscriptionEntity::setSymbolName(string sym_name){
+void 
+mamafs::SubscriptionEntity::setSymbolName(string sym_name){
     symbolName = sym_name;
     
 }
 
-string mamafs::SubscriptionEntity::getFilePath()
+string 
+mamafs::SubscriptionEntity::getFilePath()
 {
     return "/" + symbolName;
 }
 
-string mamafs::SubscriptionEntity::getMessage()
+string 
+mamafs::SubscriptionEntity::getMessage()
 {
     return message;
 }
 
-void mamafs::SubscriptionEntity::setMessage(string msg)
+void 
+mamafs::SubscriptionEntity::setMessage(string msg)
 {
     message = msg;
 }
 
-void mamafs::SubscriptionEntity::setUpdateTimeToNow()
+void 
+mamafs::SubscriptionEntity::setUpdateTimeToNow()
 {
     time (&lastUpdateTime);
 }
 
-time_t mamafs::SubscriptionEntity::getUpdateTime()
+time_t 
+mamafs::SubscriptionEntity::getUpdateTime()
 {
     return lastUpdateTime;
 }
