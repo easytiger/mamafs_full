@@ -125,7 +125,7 @@ mamafs_read (const char *path, char *buf, size_t size,
     }
     else
         size = 0;
-
+        
     return size;
 
 }
@@ -136,8 +136,7 @@ void
     MamaRunner * mr = MamaRunner::getInstance();
     mr->init();
     mr->startMamaInBackground();
-    
-    
+   
     // below is testing code. remove this!!
     SubscriptionStore * store = SubscriptionStore::getInstance();
     SubscriptionStore * store2 = SubscriptionStore::getInstance();
