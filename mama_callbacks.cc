@@ -58,6 +58,8 @@ mamafs::MamafsMessageCallback::onMsg(MamaSubscription*  subscription,
                                      MamaMsg&     msg)
 {
   
+    char tmp[100];
+    MamaRunner * mr = MamaRunner::getInstance();
     SubscriptionStore *ss = SubscriptionStore::getInstance();
     std::map<string, SubscriptionEntity*>::iterator iter;
     iter = ss->subs.find(subscription->getSymbol());
@@ -65,12 +67,26 @@ mamafs::MamafsMessageCallback::onMsg(MamaSubscription*  subscription,
     ostringstream msgStream;
     
     msgStream <<  msg.getMsgTypeName() << " recieved for " 
-              << subscription->getSymbol() << endl;
+              << subscription->getSymbol() << " [Seq Num: " << msg.getSeqNum() << "]" << endl;
+    
+    const MamaFieldDescriptor * mFieldDesc;
+    MamaMsgIterator mm_iter(mr->mDictionary);
+    MamaMsgField field = NULL;
+    
+    msg.begin(mm_iter);
+    
+    while (*mm_iter != NULL)
+    {
+        (*mm_iter).getAsString(tmp,100);
+        mFieldDesc = (*mm_iter).getDescriptor();
+        msgStream << mFieldDesc->getName() << ", " << (*mm_iter).getTypeName() << ", " <<  tmp << endl;
+        ++mm_iter;
+    }
     
     (*iter).second->setMessage(msgStream.str());
     (*iter).second->setUpdateTimeToNow();
     
-    cout << msgStream.str();
+   // cout << msgStream.str();
     
 }
 
@@ -128,7 +144,7 @@ mamafs::MamaRunner::fetchDataDictionary()
     DictionaryCallback dictCallbacks;
     
     dSource = new Wombat::MamaSource("WOMBAT", mTransport, "WOMBAT");
-    
+   
     mDictionary->create(mDefQueue,
                         &dictCallbacks,
                         dSource,

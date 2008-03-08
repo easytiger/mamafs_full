@@ -191,7 +191,6 @@ mamafs_setxattr (const char *path, const char *name,
 int 
 mamafs_unlink (const char *path)
 {
-    
     SubscriptionStore *ss = SubscriptionStore::getInstance();
     
     ss->removeBySymName(++path);

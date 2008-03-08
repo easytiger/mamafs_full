@@ -16,7 +16,7 @@ MamafsMessageCallback  * mamafs::MamaRunner::msgCbs =  new MamafsMessageCallback
 
 MamaRunner * mamafs::MamaRunner::getInstance()
 {
-    if ( !instFlag)
+    if (!instFlag)
     {
         inst = new MamaRunner();
         instFlag = true;
@@ -61,12 +61,9 @@ void mamafs::MamaRunner::init()
 
     mTransport = new MamaTransport();
     mTransport->create("gerry_utp", mBridge);
-    
+    mTransport->setOutboundThrottle(9000, MAMA_THROTTLE_INITIAL);
     
     mSource = new Wombat::MamaSource("GERRY", mTransport, "WOMBAT");
 
     fetchDataDictionary();    
 }
-
-
-
