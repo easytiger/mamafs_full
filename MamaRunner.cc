@@ -43,6 +43,7 @@ void mamafs::MamaRunner::startMamaInBackground()
 {
     StartCallback * msc = new StartCallback;
     Mama::startBackground(mBridge,  msc);
+    
 }
 
 mamafs::MamaRunner::~MamaRunner()
@@ -60,10 +61,11 @@ void mamafs::MamaRunner::init()
     mDefQueue = Mama::getDefaultEventQueue(mBridge);
 
     mTransport = new MamaTransport();
-    mTransport->create("gerry_utp", mBridge);
+    mTransport->create("gerry_wmw", mBridge);
     mTransport->setOutboundThrottle(9000, MAMA_THROTTLE_INITIAL);
     
     mSource = new Wombat::MamaSource("GERRY", mTransport, "WOMBAT");
 
     fetchDataDictionary();    
+    
 }

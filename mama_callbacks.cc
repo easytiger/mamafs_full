@@ -40,7 +40,7 @@ mamafs::MamafsMessageCallback::onError(MamaSubscription* subscription,
                                             const MamaStatus& status, 
                                             const char* symbol)
 {
-
+cout << "On Error called for " <<  symbol << " " << status.toString() << endl;
 }
 
 void 
@@ -56,7 +56,7 @@ mamafs::MamafsMessageCallback::onQuality (MamaSubscription *subscription,
 void 
 mamafs::MamafsMessageCallback::onMsg(MamaSubscription*  subscription,
                                      MamaMsg&     msg)
-{
+{   
   
     char tmp[100];
     MamaRunner * mr = MamaRunner::getInstance();
@@ -67,7 +67,8 @@ mamafs::MamafsMessageCallback::onMsg(MamaSubscription*  subscription,
     ostringstream msgStream;
     
     msgStream <<  msg.getMsgTypeName() << " recieved for " 
-              << subscription->getSymbol() << " [Seq Num: " << msg.getSeqNum() << "]" << endl;
+              << subscription->getSymbol() << " [Seq Num: " 
+	      << msg.getSeqNum() << "]" << endl;
     
     const MamaFieldDescriptor * mFieldDesc;
     MamaMsgIterator mm_iter(mr->mDictionary);
@@ -79,7 +80,9 @@ mamafs::MamafsMessageCallback::onMsg(MamaSubscription*  subscription,
     {
         (*mm_iter).getAsString(tmp,100);
         mFieldDesc = (*mm_iter).getDescriptor();
-        msgStream << mFieldDesc->getName() << ", " << (*mm_iter).getTypeName() << ", " <<  tmp << endl;
+        msgStream << mFieldDesc->getName() << ", " 
+		  << (*mm_iter).getTypeName() << ", " 
+                  <<  tmp << endl;
         ++mm_iter;
     }
     
@@ -152,7 +155,8 @@ mamafs::MamaRunner::fetchDataDictionary()
                         10.0);
     
      MamaRunner * mr = mamafs::MamaRunner::getInstance();
-     mr->startMama();     
+     mr->startMama();
+     
 }
 
 void 

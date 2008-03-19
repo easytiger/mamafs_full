@@ -32,7 +32,7 @@ mamafs_getattr (const char *path, struct stat *stbuf)
     std::map<string, SubscriptionEntity*>::iterator iter;
     
     if (strcmp(path, "/") == 0) {
-        stbuf->st_mode = S_IFDIR | 0755;
+        stbuf->st_mode = S_IFDIR | 0777;
         stbuf->st_nlink = 2;
         stbuf->st_size = 4096;
     } 

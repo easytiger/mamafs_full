@@ -26,11 +26,12 @@ OBJECTDIR=build/Release/GNU-Linux-x86
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/MamaFS.o \
-	${OBJECTDIR}/SubscriptionEntity.o \
 	${OBJECTDIR}/mama_callbacks.o \
-	${OBJECTDIR}/MamaRunner.o \
 	${OBJECTDIR}/SubscriptionStore.o \
-	${OBJECTDIR}/fsutils.o
+	${OBJECTDIR}/fsutils.o \
+	${OBJECTDIR}/SubscriptionEntity.o \
+	${OBJECTDIR}/CLParser.o \
+	${OBJECTDIR}/MamaRunner.o
 
 # C Compiler Flags
 CFLAGS=
@@ -56,17 +57,9 @@ ${OBJECTDIR}/MamaFS.o: MamaFS.cc
 	${MKDIR} -p ${OBJECTDIR}
 	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/MamaFS.o MamaFS.cc
 
-${OBJECTDIR}/SubscriptionEntity.o: SubscriptionEntity.cc 
-	${MKDIR} -p ${OBJECTDIR}
-	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/SubscriptionEntity.o SubscriptionEntity.cc
-
 ${OBJECTDIR}/mama_callbacks.o: mama_callbacks.cc 
 	${MKDIR} -p ${OBJECTDIR}
 	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/mama_callbacks.o mama_callbacks.cc
-
-${OBJECTDIR}/MamaRunner.o: MamaRunner.cc 
-	${MKDIR} -p ${OBJECTDIR}
-	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/MamaRunner.o MamaRunner.cc
 
 ${OBJECTDIR}/SubscriptionStore.o: SubscriptionStore.cc 
 	${MKDIR} -p ${OBJECTDIR}
@@ -75,6 +68,18 @@ ${OBJECTDIR}/SubscriptionStore.o: SubscriptionStore.cc
 ${OBJECTDIR}/fsutils.o: fsutils.cc 
 	${MKDIR} -p ${OBJECTDIR}
 	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/fsutils.o fsutils.cc
+
+${OBJECTDIR}/SubscriptionEntity.o: SubscriptionEntity.cc 
+	${MKDIR} -p ${OBJECTDIR}
+	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/SubscriptionEntity.o SubscriptionEntity.cc
+
+${OBJECTDIR}/CLParser.o: CLParser.cc 
+	${MKDIR} -p ${OBJECTDIR}
+	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/CLParser.o CLParser.cc
+
+${OBJECTDIR}/MamaRunner.o: MamaRunner.cc 
+	${MKDIR} -p ${OBJECTDIR}
+	$(COMPILE.cc) -O2 -Werror -I../../src/wombat_products_4.0/include -o ${OBJECTDIR}/MamaRunner.o MamaRunner.cc
 
 # Subprojects
 .build-subprojects:

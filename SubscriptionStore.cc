@@ -72,7 +72,7 @@ mamafs::SubscriptionStore::addEntity(string symName)
         se->mamaSub->create( mr->mTransport, 
                             mr->mDefQueue, 
                             mr->msgCbs, 
-                            "UTP_WMW", 
+                            "GERRY", 
                             symName.c_str(), 
                             NULL);
         

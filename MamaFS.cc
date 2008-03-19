@@ -7,6 +7,8 @@
 
 #include <stdlib.h>
 #include <iostream>
+#include <string>
+#include <cstring>
 #include <fuse.h>
 #include <ctime>
 #include <map>
@@ -15,6 +17,7 @@
 
 #include "SubscriptionStore.h"
 #include "SubscriptionEntity.h"
+#include "CLParser.h"
 #include "MamaRunnner.h"
 #include "fsutils.h"
 
@@ -40,5 +43,15 @@ int main(int argc, char** argv)
     mamafs_ops.utimens  = mamafs_utimens;
     mamafs_ops.unlink   = mamafs_unlink;
     
-    return fuse_main (argc, argv, &mamafs_ops, NULL);
+    char * new_args[4];
+
+    CLParser * cmd_parse = new CLParser(argc, argv);
+    int arg_cnt = cmd_parse->getFuseArgs(new_args);
+
+    // need to fake the arguments that are passed to fuse
+    // because it use cmd line args as its DSL. Which sucks :(
+   
+    return fuse_main (arg_cnt, new_args, &mamafs_ops, NULL);
 }
+
+
