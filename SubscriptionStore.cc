@@ -65,14 +65,14 @@ mamafs::SubscriptionStore::addEntity(string symName)
     {    
         SubscriptionEntity * se = new SubscriptionEntity(symName);
         
-        se->setMessage("New Entity");
+        se->setMessage("New Entity, awaiting data\n");
         subs[symName] = se;
         se->mamaSub = new MamaSubscription();
         
         se->mamaSub->create( mr->mTransport, 
                             mr->mDefQueue, 
                             mr->msgCbs, 
-                            "GERRY", 
+                            mr->source_str, 
                             symName.c_str(), 
                             NULL);
         
@@ -80,6 +80,7 @@ mamafs::SubscriptionStore::addEntity(string symName)
     }
     else
     {
+        // filesystem should never let it get this far...   
         cout << "Not adding.. already in store" << endl;
     }
     

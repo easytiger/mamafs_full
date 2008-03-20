@@ -57,11 +57,12 @@ void
 mamafs::MamafsMessageCallback::onMsg(MamaSubscription*  subscription,
                                      MamaMsg&     msg)
 {   
-  
+    
     char tmp[100];
     MamaRunner * mr = MamaRunner::getInstance();
     SubscriptionStore *ss = SubscriptionStore::getInstance();
     std::map<string, SubscriptionEntity*>::iterator iter;
+    
     iter = ss->subs.find(subscription->getSymbol());
     
     ostringstream msgStream;

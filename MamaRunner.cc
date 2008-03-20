@@ -42,8 +42,7 @@ void mamafs::MamaRunner::stopMama()
 void mamafs::MamaRunner::startMamaInBackground()
 {
     StartCallback * msc = new StartCallback;
-    Mama::startBackground(mBridge,  msc);
-    
+    Mama::startBackground(mBridge,  msc);   
 }
 
 mamafs::MamaRunner::~MamaRunner()
@@ -56,15 +55,15 @@ void mamafs::MamaRunner::init()
 {
     // todo: extract all settings to be command line params
     
-    mBridge = Mama::loadBridge("wmw");
+    mBridge = Mama::loadBridge(middlware_str);
     Mama::open();
     mDefQueue = Mama::getDefaultEventQueue(mBridge);
 
     mTransport = new MamaTransport();
-    mTransport->create("gerry_wmw", mBridge);
+    mTransport->create(tport_str, mBridge);
     mTransport->setOutboundThrottle(9000, MAMA_THROTTLE_INITIAL);
     
-    mSource = new Wombat::MamaSource("GERRY", mTransport, "WOMBAT");
+    mSource = new Wombat::MamaSource(source_str, mTransport, "WOMBAT");
 
     fetchDataDictionary();    
     

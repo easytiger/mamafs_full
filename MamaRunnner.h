@@ -36,6 +36,10 @@ namespace mamafs {
         MamaSource             *dSource;
         MamaDictionary         *mDictionary;
 
+        char *middlware_str;
+        char *tport_str;
+        char *source_str;
+        
         static MamafsMessageCallback  *msgCbs;
         static MamaRunner *getInstance();
 

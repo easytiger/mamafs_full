@@ -43,15 +43,16 @@ int main(int argc, char** argv)
     mamafs_ops.utimens  = mamafs_utimens;
     mamafs_ops.unlink   = mamafs_unlink;
     
-    char * new_args[4];
-
+    char * new_args[10];
+    // need to fake the arguments that are passed to fuse
+    // because it uses cmd line args as its DSL. Which sucks :(
     CLParser * cmd_parse = new CLParser(argc, argv);
     int arg_cnt = cmd_parse->getFuseArgs(new_args);
 
-    // need to fake the arguments that are passed to fuse
-    // because it use cmd line args as its DSL. Which sucks :(
-   
+    int x;
+    for (x= 0; x < arg_cnt; x++){
+        cout << "Arg -> " << x <<  ": " << new_args[x] << endl;
+    }
+    
     return fuse_main (arg_cnt, new_args, &mamafs_ops, NULL);
 }
-
-
