@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <cerrno>
 
-#include "MamaRunnner.h"
+#include "MamaRunner.h"
 #include "SubscriptionStore.h"
 #include "SubscriptionEntity.h"
 
@@ -47,7 +47,7 @@ mamafs_getattr (const char *path, struct stat *stbuf)
             stbuf->st_nlink = 1;
             //todo : should maybe  set this is an int in onMsg to save calling strlen everytime?
             stbuf->st_size = iter->second->getMessage().length();
-            stbuf->st_mtim.tv_sec = iter->second->getUpdateTime(); 
+            stbuf->st_mtim.tv_sec = iter->second->getUpdateTime();
         } 
         else
         {

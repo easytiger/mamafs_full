@@ -12,7 +12,7 @@
  */
 
 #include "mama_callbacks.h"
-#include "MamaRunnner.h"
+#include "MamaRunner.h"
 #include "SubscriptionEntity.h"
 #include "SubscriptionStore.h"
 

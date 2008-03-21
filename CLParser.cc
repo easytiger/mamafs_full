@@ -1,68 +1,80 @@
 #include <iostream>
 
 #include "CLParser.h"
-#include "MamaRunnner.h"
+#include "MamaRunner.h"
 
 #include <cstring>
 
 using namespace std;
+using namespace mamafs;
 
-mamafs::CLParser::CLParser(int argc, char **argv)
-{
-    int i = 1; // args 
+mamafs::CLParser::CLParser(int argc, char **argv) {
     
-    //default values
-    foreground = false;
-    debug = false;
-    middleware = strdup("wmw");
+    MamaRunner *mr = MamaRunner::getInstance();
     
-    MamaRunner * mr = MamaRunner::getInstance();
+    int i = 1; // args count
     
-    mr->middlware_str = middleware;
+    //cout << argc << " Arguments passed" << endl;
     
-    while (i < argc)
-    {
-       cout << "Arg " << i << " " << argv[i] << endl;
-
+    //default values for arguments
+    
+    foreground  =   false;
+    debug       =   false;
+    middleware  =   strdup("wmw");
+    mountpoint  =   NULL;
+    tport       =   NULL;
+    source      =   NULL;
+        
+    while ( i < argc ) {
+        
         if (compare(argv[i], "-M")){
-            mountpoint = strdup(argv[++i]);
-            cout << "Mountpoint encountered\n" ;
+            mountpoint = argv[++i];
+            cout << "-M passed as : " <<  mountpoint << endl;
         }
-       
-        if (compare(argv[i], "-tport")){
-            tport = strdup(argv[++i]);
-            mr->tport_str = tport;
-            
+        else if (compare(argv[i], "-tport") || compare(argv[i], "-T")){
+            tport = argv[++i];
+            cout << "-T or -tport passed as : " <<  tport << endl;
+            mr->tport_str = tport; 
         }
         else if (compare(argv[i], "-S")){
-            source = strdup(argv[++i]);
-            mr->source_str = source;
             
+            source = argv[++i];
+            cout << "-S passed as " <<  source << endl;
+            mr->source_str = source;
         }
-       else if (compare(argv[i], "-m")){
-            middleware = strdup(argv[++i]);
+        else if (compare(argv[i], "-m")){
+            middleware = argv[++i];
+            cout << "-m passed as " <<  middleware << endl;
             mr->middlware_str = middleware;
         }
-       else if ( (compare(argv[++i], "-F") || (compare(argv[i], "--foreground")) ) ){
+        else if ( (compare(argv[i], "-F") || (compare(argv[i], "--foreground")) ) ){
+            cout << "-F passed " << endl;
             foreground = true;
-
         }
-       else if ( compare(argv[++i], "--debug")  ){
+        else if ( compare(argv[i], "--debug")  ){
+            cout << "--debug passed " << endl;
             debug = true;
-            cout << "SETTING DEBUG TO TRUE" << endl;
         }
-       
+        else if ( compare(argv[i], "-?" ) || compare(argv[i], "-h") || compare(argv[i], "-help" ) ) {
+            cout << "HELP requested" << endl;
+            cout << "TODO: print usage!!!!" << endl;
+            exit(0) ;
+        }
+        
         ++i;
-    }//end while
+    }//wend
+    
+    // todo : exit if mountpoint/tport/source is missing
+    
+    cout << endl;
 }
 
-mamafs::CLParser::~CLParser()
-{
+mamafs::CLParser::~CLParser() {
     
 }
 
-bool mamafs::CLParser::compare(char * s1, char * s2)
-{
+bool 
+mamafs::CLParser::compare(char * s1, char * s2) {
     if (strcmp(s1, s2) != 0)
         return false;
     else
@@ -72,29 +84,44 @@ bool mamafs::CLParser::compare(char * s1, char * s2)
 /*
  * arg_ar - array to be modified
  */
-int mamafs::CLParser::getFuseArgs(char ** arg_ar)
-{
+int 
+mamafs::CLParser::getFuseArgs(char ** arg_ar) {
     
     int num = 0;
     
-    arg_ar[num] = new char[12]; 
-    arg_ar[num] = strdup("mamafs_full");
-    num++;
+    arg_ar[num] = new char[12];
+    arg_ar[num] = strdup("exename");
     
-    arg_ar[num] = new char[strlen(mountpoint)]; 
-    arg_ar[num] = mountpoint;
+    if (mountpoint != NULL)
+    {
+        arg_ar[++num] = new char[strlen(mountpoint)];
+        arg_ar[num] = mountpoint;
+    }
     
-    num++;
-    arg_ar[num] = new char[3]; arg_ar[num] = "-f";
-//    
-//    // set -f
-//    if (foreground)
-//        arg_ar[++num] = new char[num]; arg_ar[num] = "-f";
-//
-//    if (debug)
-//        arg_ar[++num] = new char[num]; arg_ar[num] = "-d";
-
-    return num + 1;
+    if (foreground)
+    {
+        arg_ar[++num] = new char[3];
+        arg_ar[num] = strdup("-f");
+    }
+    
+    if (debug)
+    {
+        arg_ar[++num] = new char[3];
+        arg_ar[num] = strdup("-d");
+    }
+    // more ?
+    return ++num;
     
 }
 
+void 
+mamafs::CLParser::printFuseArgs() {
+    char * new_args[10];
+    int x;
+    
+    int c = getFuseArgs(new_args);
+    
+    for (x = 0; x < c; x++) {
+        cout << "Fuse Arg #" << x << " = "<<  new_args[x] << endl;
+    }
+}

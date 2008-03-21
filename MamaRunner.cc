@@ -1,5 +1,5 @@
 
-#include "MamaRunnner.h"
+#include "MamaRunner.h"
 
 
 #include <string>
@@ -60,6 +60,7 @@ void mamafs::MamaRunner::init()
     mDefQueue = Mama::getDefaultEventQueue(mBridge);
 
     mTransport = new MamaTransport();
+    std::cout << " TPORT: " <<  tport_str << std::endl;
     mTransport->create(tport_str, mBridge);
     mTransport->setOutboundThrottle(9000, MAMA_THROTTLE_INITIAL);
     

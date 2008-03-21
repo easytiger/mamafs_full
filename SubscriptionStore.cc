@@ -1,7 +1,7 @@
 
 #include "SubscriptionStore.h"
 #include "SubscriptionEntity.h"
-#include "MamaRunnner.h"
+#include "MamaRunner.h"
 
 #include <map>
 #include <mama/mamacpp.h>

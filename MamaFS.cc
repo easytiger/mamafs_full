@@ -18,7 +18,7 @@
 #include "SubscriptionStore.h"
 #include "SubscriptionEntity.h"
 #include "CLParser.h"
-#include "MamaRunnner.h"
+#include "MamaRunner.h"
 #include "fsutils.h"
 
 using namespace std;
@@ -49,10 +49,5 @@ int main(int argc, char** argv)
     CLParser * cmd_parse = new CLParser(argc, argv);
     int arg_cnt = cmd_parse->getFuseArgs(new_args);
 
-    int x;
-    for (x= 0; x < arg_cnt; x++){
-        cout << "Arg -> " << x <<  ": " << new_args[x] << endl;
-    }
-    
     return fuse_main (arg_cnt, new_args, &mamafs_ops, NULL);
 }

@@ -22,11 +22,13 @@ namespace mamafs
         bool debug;
         
         bool compare(char * s1, char * s2);
+        
     public:
         CLParser(int argc, char ** argv);
         ~CLParser();
         
         int getFuseArgs(char ** arg_ar);
+        void printFuseArgs();
         
         char * getMountpoint();
         char * getTransport();

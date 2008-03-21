@@ -7,7 +7,7 @@
       <itemPath>CLParser.h</itemPath>
       <itemPath>fsutils.h</itemPath>
       <itemPath>mama_callbacks.h</itemPath>
-      <itemPath>MamaRunnner.h</itemPath>
+      <itemPath>MamaRunner.h</itemPath>
       <itemPath>SubscriptionEntity.h</itemPath>
       <itemPath>SubscriptionStore.h</itemPath>
     </logicalFolder>
@@ -81,7 +81,7 @@
       <item path="MamaRunner.cc">
         <itemTool>1</itemTool>
       </item>
-      <item path="MamaRunnner.h">
+      <item path="MamaRunner.h">
         <itemTool>3</itemTool>
       </item>
       <item path="SubscriptionEntity.cc">
@@ -164,7 +164,7 @@
       <item path="MamaRunner.cc">
         <itemTool>1</itemTool>
       </item>
-      <item path="MamaRunnner.h">
+      <item path="MamaRunner.h">
         <itemTool>3</itemTool>
       </item>
       <item path="SubscriptionEntity.cc">
