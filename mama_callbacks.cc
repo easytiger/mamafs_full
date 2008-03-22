@@ -10,7 +10,7 @@
 /*
  * MamaSubscriptionCallback Implementation
  */
-
+ 
 #include "mama_callbacks.h"
 #include "MamaRunner.h"
 #include "SubscriptionEntity.h"
@@ -32,7 +32,19 @@ mamafs::MamafsMessageCallback::~MamafsMessageCallback ()
 void 
 mamafs::MamafsMessageCallback::onCreate (MamaSubscription* subscription)
 {
+    MamaRunner * mr = MamaRunner::getInstance();
+    SubscriptionStore *ss = SubscriptionStore::getInstance();
+    std::map<string, SubscriptionEntity*>::iterator iter;
     
+    iter = ss->subs.find(subscription->getSymbol());    
+    
+    ostringstream msgStream;
+    
+    msgStream << "Subscription for " << subscription->getSymbol() 
+              << " created" << endl;
+
+    (*iter).second->setMessage(msgStream.str());
+    (*iter).second->setUpdateTimeToNow();
 }
 
 void 
@@ -40,7 +52,23 @@ mamafs::MamafsMessageCallback::onError(MamaSubscription* subscription,
                                             const MamaStatus& status, 
                                             const char* symbol)
 {
-cout << "On Error called for " <<  symbol << " " << status.toString() << endl;
+
+    MamaRunner * mr = MamaRunner::getInstance();
+    SubscriptionStore *ss = SubscriptionStore::getInstance();
+    std::map<string, SubscriptionEntity*>::iterator iter;
+
+    iter = ss->subs.find(subscription->getSymbol());
+
+    ostringstream msgStream;
+
+    msgStream << "Subscription for " << subscription->getSymbol()
+              << " - Error:  " << status.toString()  << endl;
+
+    (*iter).second->setMessage(msgStream.str());
+    (*iter).second->setUpdateTimeToNow();
+
+    cout << msgStream.str() << endl;
+
 }
 
 void 
@@ -50,6 +78,23 @@ mamafs::MamafsMessageCallback::onQuality (MamaSubscription *subscription,
                                                short cause, 
                                                const void *platformInfo)
 {
+    MamaRunner * mr = MamaRunner::getInstance();
+    SubscriptionStore *ss = SubscriptionStore::getInstance();
+    std::map<string, SubscriptionEntity*>::iterator iter;
+
+    iter = ss->subs.find(subscription->getSymbol());
+
+    ostringstream msgStream;
+
+    msgStream << "Subscription for " << subscription->getSymbol()
+              << " onQuality:   " << quality.toString()  << endl;
+
+
+    (*iter).second->setMessage(msgStream.str());
+    (*iter).second->setUpdateTimeToNow();
+
+    cout << msgStream.str() << endl;
+
 
 }
 
@@ -57,7 +102,6 @@ void
 mamafs::MamafsMessageCallback::onMsg(MamaSubscription*  subscription,
                                      MamaMsg&     msg)
 {   
-    
     char tmp[100];
     MamaRunner * mr = MamaRunner::getInstance();
     SubscriptionStore *ss = SubscriptionStore::getInstance();
@@ -91,7 +135,6 @@ mamafs::MamafsMessageCallback::onMsg(MamaSubscription*  subscription,
     (*iter).second->setUpdateTimeToNow();
     
    // cout << msgStream.str();
-    
 }
 
 void 
@@ -165,3 +208,4 @@ mamafs::StartCallback::onStartComplete(MamaStatus status)
 {
     cout << "MamaStartCallback called with status " <<status.toString() << endl;
 }
+

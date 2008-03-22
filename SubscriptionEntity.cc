@@ -20,7 +20,7 @@ mamafs::SubscriptionEntity::~SubscriptionEntity()
 {
     // should do deallocation of the mamasub here?
     
-    cout << "Destroyed!" << endl;
+    cout << "Destroyed " << symbolName <<   endl;
 }
 
 string 

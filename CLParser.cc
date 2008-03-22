@@ -20,7 +20,7 @@ mamafs::CLParser::CLParser(int argc, char **argv) {
     
     foreground  =   false;
     debug       =   false;
-    middleware  =   strdup("wmw");
+    middleware  =   NULL;
     mountpoint  =   NULL;
     tport       =   NULL;
     source      =   NULL;
@@ -29,30 +29,30 @@ mamafs::CLParser::CLParser(int argc, char **argv) {
         
         if (compare(argv[i], "-M")){
             mountpoint = argv[++i];
-            cout << "-M passed as : " <<  mountpoint << endl;
+//            cout << "-M passed as : " <<  mountpoint << endl;
         }
         else if (compare(argv[i], "-tport") || compare(argv[i], "-T")){
             tport = argv[++i];
-            cout << "-T or -tport passed as : " <<  tport << endl;
+//            cout << "-T or -tport passed as : " <<  tport << endl;
             mr->tport_str = tport; 
         }
         else if (compare(argv[i], "-S")){
             
             source = argv[++i];
-            cout << "-S passed as " <<  source << endl;
+//            cout << "-S passed as " <<  source << endl;
             mr->source_str = source;
         }
         else if (compare(argv[i], "-m")){
             middleware = argv[++i];
-            cout << "-m passed as " <<  middleware << endl;
+//            cout << "-m passed as " <<  middleware << endl;
             mr->middlware_str = middleware;
         }
         else if ( (compare(argv[i], "-F") || (compare(argv[i], "--foreground")) ) ){
-            cout << "-F passed " << endl;
+//            cout << "-F passed " << endl;
             foreground = true;
         }
         else if ( compare(argv[i], "--debug")  ){
-            cout << "--debug passed " << endl;
+//            cout << "--debug passed " << endl;
             debug = true;
         }
         else if ( compare(argv[i], "-?" ) || compare(argv[i], "-h") || compare(argv[i], "-help" ) ) {
@@ -64,7 +64,7 @@ mamafs::CLParser::CLParser(int argc, char **argv) {
         ++i;
     }//wend
     
-    // todo : exit if mountpoint/tport/source is missing
+    // todo : exit if mountpoint/tport/source are missing then display help
     
     cout << endl;
 }

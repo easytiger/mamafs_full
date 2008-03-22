@@ -28,6 +28,7 @@ namespace mamafs {
     public:
 
         // it is of course bad to make these public like this
+        // TODO: encapsulate all this crap
         mamaBridge              mBridge;
         string                  mWare;
         MamaQueue              *mDefQueue;

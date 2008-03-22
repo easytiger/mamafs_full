@@ -1,7 +1,6 @@
 
 #include "MamaRunner.h"
 
-
 #include <string>
 #include <iostream>
 #include <mama/mamacpp.h>

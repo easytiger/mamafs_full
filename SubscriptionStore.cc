@@ -83,16 +83,11 @@ mamafs::SubscriptionStore::addEntity(string symName)
         // filesystem should never let it get this far...   
         cout << "Not adding.. already in store" << endl;
     }
-    
-    
-
 }
 
 SubscriptionEntity * 
 mamafs::SubscriptionStore::getSubscriptionEntityBySym(string symName)
 {
-    
-    
     SubscriptionEntity * subEnt = NULL;
     std::map<string, SubscriptionEntity*>::iterator iter;
     
